@@ -2,9 +2,39 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>shelter database</title>
     </head>
     <body>
-        {{result}}
+        <h2>Your Existing Animals</h2>
+        {% for animal in animals %}
+            {{ animal.getName }}
+        {% endfor %}
+        <h2>Your Existing Types</h2>
+        {% for type in types %}
+            {{ type.getName }}
+        {% endfor %}
+        <form class="" action="/add-animal" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" value="">
+            <label for="gender">Gender</label>
+            <input type="text" name="gender" value="">
+            <label for="admit_date">Date Admitted</label>
+            <input type="date" name="admit_date" value="">
+            <label for="breed">Breed</label>
+            <input type="text" name="breed" value="">
+            <label for="type_id">Type</label>
+            <select name="type_id">
+            {% for type in types %}
+                <option value = '{{type.getId}}'>{{type.getName}}</option>
+            {% endfor %}
+            </select>
+            <button type="submit" name="button">Add Animal</button>
+        </form>
+        <form class="" action="/add-type" method="post">
+            <label for="name">Type Name</label>
+            <input type="text" name="name" value="">
+            <button type="submit" name="button">Add Animal Type</button>
+
+        </form>
     </body>
 </html>
