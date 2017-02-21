@@ -6,13 +6,17 @@
     </head>
     <body>
         <h2>Your Existing Animals</h2>
+        <ul>
         {% for animal in animals %}
-            {{ animal.getName }}
+            <li><a href='/animal/{{ animal.getId }}'>{{ animal.getName }}</a></li>
         {% endfor %}
+        </ul>
         <h2>Your Existing Types</h2>
+        <ul>
         {% for type in types %}
-            {{ type.getName }}
+            <li><a href='/type/{{ type.getId }}'>{{ type.getName }}</a></li>
         {% endfor %}
+        </ul>
         <form class="" action="/add-animal" method="post">
             <label for="name">Name</label>
             <input type="text" name="name" value="">

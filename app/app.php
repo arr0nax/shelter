@@ -37,5 +37,11 @@
         return $app["twig"]->render("root.html.twig", ['animals'=>$animals,'types'=>$types]);
     });
 
+    $app->get('/animal/{id}', function($id) use ($app) {
+        $found_animal = Animal::getAnimalById($id);
+
+        return $app['twig']->render("animal.html.twig", ['animal' => $found_animal]);
+    });
+
     return $app;
 ?>

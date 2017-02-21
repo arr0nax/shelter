@@ -68,6 +68,17 @@
             return $this->type_id;
         }
 
+        function getType()
+        {
+            $type = $GLOBALS['DB']->query("SELECT * FROM types WHERE id = {$this->getTypeId()};");
+            $new_type;
+            foreach ($type as $current_type)
+            {
+                $new_type = $current_type['name'];
+            }
+            return $new_type;
+        }
+
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO animals (name, gender, admit_date, breed, type_id) VALUES ('{$this->getName()}', '{$this->getGender()}', '{$this->getAdmitDate()}', '{$this->getBreed()}', '{$this->getTypeId()}'); ");
@@ -96,6 +107,25 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM animals");
         }
+
+        static function getAnimalById($animal_id)
+        {
+            $returned_animal = $GLOBALS['DB']->query("SELECT * FROM animals WHERE id = '{$animal_id}';");
+            $new_animal;
+            foreach($returned_animal as $animal)
+            {
+            $name = $animal['name'];
+            $gender = $animal['gender'];
+            $admit_date = $animal['admit_date'];
+            $breed = $animal['breed'];
+            $type_id = $animal['type_id'];
+            $id = $animal['id'];
+            $new_animal = new Animal($name, $gender, $admit_date, $breed, $type_id, $id);
+            }
+            return $new_animal;
+        }
+
+
     }
 
 

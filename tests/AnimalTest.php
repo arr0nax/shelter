@@ -26,7 +26,7 @@
 
             $name = 'spot';
             $gender = 'female';
-            $admit_date = '2007-10-12 00:00:00';
+            $admit_date = '2007-10-12';
             $breed = 'heeler';
             $type_id = $new_type->getId();
             $id = null;
@@ -42,7 +42,7 @@
         {
             $name1 = 'spot';
             $gender1 = 'female';
-            $admit_date1 = '2007-10-12 00:00:00';
+            $admit_date1 = '2007-10-12';
             $breed1 = 'heeler';
             $type_id = '1';
             $id = null;
@@ -50,7 +50,7 @@
             $test_animal1->save();
             $name2 = 'brad';
             $gender2 = 'male';
-            $admit_date2 = '2007-10-12 00:00:01';
+            $admit_date2 = '2007-10-12';
             $breed2 = 'dog';
             $test_animal2 = new Animal($name2, $gender2, $admit_date2, $breed2, $type_id, $id);
             $test_animal2->save();
@@ -64,7 +64,7 @@
         {
             $name1 = 'spot';
             $gender1 = 'female';
-            $admit_date1 = '2007-10-12 00:00:00';
+            $admit_date1 = '2007-10-12';
             $breed1 = 'heeler';
             $type_id = '1';
             $id = null;
@@ -72,7 +72,7 @@
             $test_animal1->save();
             $name2 = 'brad';
             $gender2 = 'male';
-            $admit_date2 = '2007-10-12 00:00:01';
+            $admit_date2 = '2007-10-12';
             $breed2 = 'dog';
             $test_animal2 = new Animal($name2, $gender2, $admit_date2, $breed2, $type_id, $id);
             $test_animal2->save();
