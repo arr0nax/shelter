@@ -47,12 +47,7 @@
             return $types;
         }
 
-        static function deleteAll()
-        {
-            $GLOBALS['DB']->exec("DELETE FROM types");
-        }
-
-        function findAnimalByTypeId()
+        function getAnimals()
         {
             $returned_animals = $GLOBALS['DB']->query("SELECT * FROM animals WHERE type_id = {$this->id} ORDER BY admit_date;");
             $animals = array();
@@ -68,6 +63,11 @@
                 array_push($animals, $new_animal);
             }
             return $animals;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM types");
         }
     }
  ?>
