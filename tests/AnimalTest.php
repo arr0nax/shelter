@@ -19,11 +19,16 @@
           Type::deleteAll();
         }
         function test_save() {
+            $type_name = 'dog';
+            $id = null;
+            $new_type = new Type($type_name, $id);
+            $new_type->save();
+
             $name = 'spot';
             $gender = 'female';
             $admit_date = '2007-10-12 00:00:00';
             $breed = 'heeler';
-            $type_id = '1';
+            $type_id = $new_type->getId();
             $id = null;
             $test_animal = new Animal($name, $gender, $admit_date, $breed, $type_id, $id);
             $test_animal->save();
