@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    {% if animals is not empty %}
+    <h2>Here are all the animals of type {{type}}</h2>
+    <ul>
+        {% for animal in animals %}
+            <li><a href='/animal/{{ animal.getId }}'>{{animal.name}}</a></li>
+        {% endfor %}
+    </ul>
+    {% elseif type == 'cat' %}
+    <h2>There are no animals of type {{type}} right meow ^-__-^</h2>
+    {% else %}
+    <h2>There are no animals of type {{ type }} right now :(</h2>
+    {% endif %}
+</body>
+</html>

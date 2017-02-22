@@ -79,10 +79,21 @@
             return $new_type;
         }
 
+        function update($name, $gender, $admit_date, $breed, $type_id, $id)
+        {
+            $GLOBALS['DB']->exec("UPDATE animals SET name = '{$name}', gender = '{$gender}', admit_date = '{$admit_date}', breed = '{$breed}', type_id = {$type_id} WHERE id = {$id};");
+
+        }
+
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO animals (name, gender, admit_date, breed, type_id) VALUES ('{$this->getName()}', '{$this->getGender()}', '{$this->getAdmitDate()}', '{$this->getBreed()}', '{$this->getTypeId()}'); ");
             $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        function deleteAnimal()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM animals WHERE id = {$this->getId()};");
         }
 
         static function getAll()

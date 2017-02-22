@@ -47,9 +47,9 @@
             return $types;
         }
 
-        function getAnimals()
+        static function getAnimals($id)
         {
-            $returned_animals = $GLOBALS['DB']->query("SELECT * FROM animals WHERE type_id = {$this->id} ORDER BY admit_date;");
+            $returned_animals = $GLOBALS['DB']->query("SELECT * FROM animals WHERE type_id = {$id} ORDER BY admit_date;");
             $animals = array();
             foreach($returned_animals as $animal)
             {
@@ -63,6 +63,17 @@
                 array_push($animals, $new_animal);
             }
             return $animals;
+        }
+
+        static function getTypeName($id)
+        {
+            $returned_type = $GLOBALS['DB']->query("SELECT * FROM types WHERE id = {$id}");
+            $new_type;
+            foreach ($returned_type as $current_type)
+            {
+                $new_type = $current_type['name'];
+            }
+            return $new_type;
         }
 
         static function deleteAll()

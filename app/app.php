@@ -13,6 +13,9 @@
     $app->register(new Silex\Provider\TwigServiceProvider(), ["twig.path" => __DIR__."/../views"]);
     $app['debug'] = true;
 
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
     $app->get('/', function() use($app) {
         $animals = Animal::getAll();
         $types = Type::getAll();
@@ -39,8 +42,29 @@
 
     $app->get('/animal/{id}', function($id) use ($app) {
         $found_animal = Animal::getAnimalById($id);
+        $types = Type::getAll();
 
-        return $app['twig']->render("animal.html.twig", ['animal' => $found_animal]);
+        return $app['twig']->render("animal.html.twig", ['animal' => $found_animal, 'types'=>$types]);
+    });
+
+    $app->patch('/edit-animal/{id}', function($id) use($app) {
+        $found_animal = Animal::getAnimalById($id);
+        $found_animal->update($_POST['name'],$_POST['gender'],$_POST['admit_date'],$_POST['breed'], $_POST['type_id'], $id);
+        return $app->redirect('/animal/'.$id);
+    });
+
+    $app->get('/type/{id}', function($id) use ($app) {
+        $found_animals = Type::getAnimals($id);
+        $type = Type::getTypeName($id);
+
+        return $app['twig']->render('type.html.twig', ['animals' => $found_animals,'type' => $type]);
+    });
+
+    $app->delete('/delete-animal/{id}', function($id) use ($app) {
+        $found_animal = Animal::getAnimalByID($id);
+        $found_animal->deleteAnimal();
+
+        return $app->redirect('/');
     });
 
     return $app;

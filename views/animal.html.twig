@@ -9,7 +9,24 @@
     <p>Gender: {{ animal.getGender }}</p>
     <p>Admit Date: {{ animal.getAdmitDate }}</p>
     <p>Breed: {{ animal.getBreed }}</p>
-
+    <form class="" action="/edit-animal/{{animal.getId}}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="">
+        <label for="gender">Gender</label>
+        <input type="text" name="gender" value="">
+        <label for="admit_date">Date Admitted</label>
+        <input type="date" name="admit_date" value="">
+        <label for="breed">Breed</label>
+        <input type="text" name="breed" value="">
+        <label for="type_id">Type</label>
+        <select class="" name="type_id">
+        {% for type in types %}
+            <option value = '{{type.getId}}'>{{type.getName}}</option>
+        {% endfor %}
+        </select>
+        <button type="submit" name="button">Edit Animal</button>
+    </form>
 </body>
 
 </html>
